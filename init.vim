@@ -27,6 +27,7 @@ inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
+let g:user_emmet_leader_key='<C-c>'
 
 " open NERDTree automaticaly
 "autocmd StdinReadPre * let s:std_in=1
