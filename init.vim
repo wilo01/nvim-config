@@ -85,6 +85,12 @@ set tabstop=2
 set shiftwidth=2
 set smartcase
 
+" gv reselects last selection
+" so now you can indent with >>>>…
+" without selecting again
+xnoremap < <gv
+xnoremap > >gv
+
 " always uses spaces instead of tab characters
 set expandtab
 
