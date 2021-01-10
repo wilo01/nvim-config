@@ -19,11 +19,13 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim' "Auto complete html tags by Crtl+C,
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'morhetz/gruvbox'
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
 Plug 'jelera/vim-javascript-syntax'
+Plug 'jiangmiao/auto-pairs'
+
 " Initialize plugin system
 call plug#end()
 
@@ -33,7 +35,7 @@ vmap ++ <plug>NERDCommenterToggle
 nmap ++ <plug>NERDCommenterToggle
 let g:user_emmet_leader_key='<C-c>'
 
-" open NERDTree automaticaly
+"open NERDTree automaticaly
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree
 
