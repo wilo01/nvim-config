@@ -1,4 +1,10 @@
-" Specify a directory for plugins
+"                         _
+"   _ __   ___  _____   _(_)_ __ ___
+"  | '_ \ / _ \/ _ \ \ / / | '_ ` _ \
+"  | | | |  __/ (_) \ V /| | | | | | |
+"  |_| |_|\___|\___/ \_/ |_|_| |_| |_|
+"
+"Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'itchyny/lightline.vim'
@@ -15,11 +21,9 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'mattn/emmet-vim'
 Plug 'christoomey/vim-tmux-navigator'
-
 Plug 'morhetz/gruvbox'
-
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-
+Plug 'jelera/vim-javascript-syntax'
 " Initialize plugin system
 call plug#end()
 
@@ -70,16 +74,29 @@ noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 " Replace all is aliased to S.
 noremap S :%s//g<Left><Left>
 
-set nu relativenumber
-
+" Basic Stuff
+colorscheme gruvbox
+syntax on
+set smartindent
 set smarttab
+set nu relativenumber
 set cindent
 set tabstop=2
 set shiftwidth=2
+set smartcase
+
 " always uses spaces instead of tab characters
 set expandtab
 
-colorscheme gruvbox
+" Spell-check (English US and Polish)
+map <F6> :setlocal spell! spelllang=en_us<CR>
+map <F7> :setlocal spell! spelllang=pl<CR>
+
+" Tab Managment
+map <C-o> :tabnew<CR>
+map <C-c> :tabclose<CR>
+nnoremap <Leader>k gT
+nnoremap <Leader>j gt
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
@@ -227,4 +244,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 " Do default action for previous item.
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>l
+noremap <silent> <space>p  :<C-u>CocListResume<CR>l
+"==Encoding==
+scriptencoding utf-8
