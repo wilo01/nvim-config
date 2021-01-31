@@ -124,6 +124,9 @@ endfunction
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
 
+" coc disable warnings
+" let g:coc_disable_startup_warning = 1
+
 " coc config
 let g:coc_global_extensions = [
   \ 'coc-snippets',
