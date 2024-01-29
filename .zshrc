@@ -192,3 +192,4 @@ export LC_ALL=C.UTF-8
 
 # Load Angular CLI autocompletion.
 source <(ng completion script)
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
