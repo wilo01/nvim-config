@@ -56,6 +56,7 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
+vim.keymap.set("n", "<leader>vs", "<CMD>Gitsigns preview_hunk_inline<CR>")
 --[[ Other keymaps and navigation
 
 # SEARCH & NAVIGATION #
