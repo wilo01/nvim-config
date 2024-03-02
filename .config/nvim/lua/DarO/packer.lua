@@ -40,7 +40,7 @@ use({"lewis6991/gitsigns.nvim"})                         -- Git
 use("theprimeagen/harpoon")
 use({"HiPhish/rainbow-delimiters.nvim"})                 -- Rainbow delimiters
 use {
-   'nvim-telescope/telescope.nvim', tag = '0.1.0',
+   'nvim-telescope/telescope.nvim', tag = '0.1.5',
    -- or                            , branch = '0.1.x',
    requires = { {'nvim-lua/plenary.nvim'} }
 }
@@ -78,4 +78,5 @@ use("eandrju/cellular-automaton.nvim")
 use("laytan/cloak.nvim")
 use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- Auto html tag completion
 use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+-- use("michaelrommel/nvim-silicon")
 end)
