@@ -12,3 +12,6 @@
 	rebase = false
 [init]
 	templateDir = /Users/daro/.git-template
+[git-hooks]
+	append-branch-name = true
+	commit-on-master = false
