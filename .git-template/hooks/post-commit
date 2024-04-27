@@ -1,16 +1,28 @@
 #!/bin/sh
+
+disable_post_commit=$(git config --local hooks.disablePostCommit)
+if [ $disable_post_commit = "true" ]; then
+    echo "Global git post-commit is disabled via Git config."
+    exit 0
+fi
+
 echo "Global git post-commit run"
-# Get the last commit message
+
 date=`date +%Y-%m-%d`
 hours=`date +%H:%M`
 commit_msg=$(git log -1 --format=%B)
 commit_hash=$(git rev-parse HEAD)
 current_branch=$(git branch --show-current)
-previous_branch=$(git rev-parse --symbolic-full-name --abbrev-ref=loose @{-1})
+previous_branch=$(git rev-parse --abbrev-ref @{-1} 2>/dev/null)
 stash_list=$(git stash list --format="%H %gd: %gs")
-changed_files=$(git diff --name-only HEAD^~)
-# stash_list_search=$(git stash list --format="%H %gd: %gs" -S "$current_branch")
-# - Stash list [$stash_list_search]
+changed_files=$(git diff --cached --name-only HEAD)
+
+if [ -z "$previous_branch" ] || [ "$previous_branch" = "@{-1}" ]; then
+   previous_branch=$current_branch
+   echo "No previous_branch replacing with current_branch:\n$current_branch"
+fi
+echo "Previous branch: $previous_branch"
+echo "Commit message:\n\n$commit_msg\n"
 
 # Append the commit message to your notes file
 echo "
@@ -18,7 +30,7 @@ echo "
 ## $previous_branch
 $commit_msg
 
-## $changed_files
+$changed_files
 - Commit branch HASH [$commit_hash]($current_branch)
 " >> ~/Dev/Private/Notes.md
 
