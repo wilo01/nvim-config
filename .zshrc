@@ -110,21 +110,62 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# nvim swithcer
-alias nvim-vimscript="NVIM_APPNAME=nvim-vimscript nvim"
-alias nvim-reddit="NVIM_APPNAME=nvim-reddit nvim"
+# # nvim swithcer
+# alias nvim-vimscript="NVIM_APPNAME=nvim-vimscript nvim"
+# alias nvim-reddit="NVIM_APPNAME=nvim-reddit nvim"
+# alias nvim-kick="NVIM_APPNAME=nvim-kick nvim"
+
+# function nvims() {
+#   items=("nvim" "nvim-kick" "nvim-vimscript" "nvim-reddit")
+#   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+#   if [[ -z $config ]]; then
+#     echo "Nothing selected"
+#     return 0
+#   elif [[ $config == "nvim" ]]; then
+#     config=""
+#   fi
+#   NVIM_APPNAME=$config nvim $@
+# }
+
+# Dynamic Nvim switcher based on configuration folders in ~/.config
+function generate_nvim_aliases() {
+    local config_path="$HOME/.config"
+    local nvim_prefix="nvim-"
+
+    # Generate aliases for each found nvim configuration directory
+    for config_dir in "$config_path"/nvim-*; do
+        if [[ -d $config_dir ]]; then
+            local config_name="${config_dir##*/}"
+            local alias_name="${config_name/nvim-/}"
+            alias "$alias_name"="NVIM_APPNAME='$config_name' nvim"
+        fi
+    done
+}
 
 function nvims() {
-  items=("default" "nvim-vimscript" "nvim-reddit")
-  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config nvim $@
+    # Generate a list of configurations dynamically
+    local config_path="$HOME/.config"
+    local items=()
+    for config_dir in "$config_path"/nvim-*; do
+        if [[ -d $config_dir ]]; then
+            items+=("${config_dir##*/}")
+        fi
+    done
+    # Add the default nvim as an option
+    items+=("nvim")
+
+    local config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=50% --layout=reverse --border --exit-0)
+    if [[ -z $config ]]; then
+        echo "Nothing selected"
+        return 0
+    elif [[ $config == "nvim" ]]; then
+        config=""
+    fi
+    NVIM_APPNAME=$config nvim $@
 }
+
+# Generate aliases when this script is sourced
+generate_nvim_aliases
 
 # bindkey -s ^a "nvims\n"
 # end
