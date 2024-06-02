@@ -111,22 +111,6 @@ source $ZSH/oh-my-zsh.sh
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # # nvim swithcer
-# alias nvim-vimscript="NVIM_APPNAME=nvim-vimscript nvim"
-# alias nvim-reddit="NVIM_APPNAME=nvim-reddit nvim"
-# alias nvim-kick="NVIM_APPNAME=nvim-kick nvim"
-
-# function nvims() {
-#   items=("nvim" "nvim-kick" "nvim-vimscript" "nvim-reddit")
-#   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
-#   if [[ -z $config ]]; then
-#     echo "Nothing selected"
-#     return 0
-#   elif [[ $config == "nvim" ]]; then
-#     config=""
-#   fi
-#   NVIM_APPNAME=$config nvim $@
-# }
-
 # Dynamic Nvim switcher based on configuration folders in ~/.config
 function generate_nvim_aliases() {
     local config_path="$HOME/.config"
