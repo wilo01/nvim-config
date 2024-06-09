@@ -5,7 +5,7 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")          -- Select visual and move 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")          -- Select visual and move DOWN
 
 vim.keymap.set("i", "jk", "<Esc>")
--- vim.keymap.set("v", "jk", "<Esc>")
+vim.keymap.set("v", "jk", "<Esc>")
 
 -- vim.keymap.set("n", "J", "}")
 -- vim.keymap.set("n", "K", "{")
@@ -56,9 +56,10 @@ vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
 end)
 
-vim.keymap.set("n", "<leader>va", "<CMD>Gitsigns preview_hunk_inline<CR>")
-vim.keymap.set("n", "<leader>vs", "<CMD>Gitsigns diffthis<CR>")
+vim.keymap.set("n", "<leader>va", "<CMD>Gitsigns preview_hunk_inline<CR>") -- Git preview
+vim.keymap.set("n", "<leader>vs", "<CMD>Gitsigns diffthis<CR>") -- Git diff
 vim.keymap.set("n", "<leader>vt", "<CMD>Gitsigns toggle_deleted<CR>")
+vim.keymap.set("n", "<leader>vb", "<CMD>Gitsigns blame_line<CR>")
 
 --[[ Other keymaps and navigation
 
@@ -107,3 +108,4 @@ vim.keymap.set("n", "<leader>vt", "<CMD>Gitsigns toggle_deleted<CR>")
  vim.keymap.set("n", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 
 END ]]--
+
