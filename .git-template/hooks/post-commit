@@ -46,3 +46,4 @@ $changed_files
 " >>"$notes_file_path"
 
 echo "$stash_list" >"$stash_file_path"
+
