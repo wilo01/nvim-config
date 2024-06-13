@@ -26,11 +26,11 @@ echo "Previous branch: $previous_branch"
 echo "Commit message:\n\n$commit_msg\n"
 
 if [ -n "$hooks_local_path" ] && [ -n "$hooks_local_filename" ]; then
-   notes_file_path=${hooks_local_path}/${hooks_local_filename}.md
-   stash_file_path=${hooks_local_path}/Stash_${hooks_local_filename}.md
+   notes_file_path="${hooks_local_path}/${hooks_local_filename}.md"
+   stash_file_path="${hooks_local_path}/Stash_${hooks_local_filename}.md"
 else
-   notes_file_path=~/Notes.md
-   stash_file_path=~/Stash_list.md
+   notes_file_path="$HOME/Notes.md"
+   stash_file_path="$HOME/Stash_list.md"
 fi
 echo "Commit saved here:    $notes_file_path"
 echo "Stashes saved here:     $stash_file_path"
