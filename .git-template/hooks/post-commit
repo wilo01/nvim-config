@@ -2,17 +2,17 @@
 
 enable_global_hooks=$(git config --local hooks.enableGlobalHooks)
 if [ "$enable_global_hooks" != true ]; then
-    echo "Global git post-commit is disabled via Git config."
-    exit 0
+   echo "Global git post-commit is disabled via Git config."
+   exit 0
 fi
 
 echo "Global git post-commit run"
-date=`date +%Y-%m-%d`
-hours=`date +%H:%M`
+date=$(date +%Y-%m-%d)
+hours=$(date +%H:%M)
 commit_msg=$(git log -1 --format=%B)
 commit_hash=$(git rev-parse HEAD)
 current_branch=$(git branch --show-current)
-previous_branch=$(git rev-parse --abbrev-ref @{-1} 2>/dev/null)
+previous_branch=$(git rev-parse --abbrev-ref "@{-1}" 2>/dev/null)
 stash_list=$(git stash list --format="%H %gd: %gs")
 changed_files=$(git diff --cached --name-only HEAD~)
 
@@ -31,6 +31,6 @@ $commit_msg
 
 $changed_files
 - Commit branch HASH [$commit_hash]($current_branch)
-" >> ~/Dev/Private/Notes.md
+" >>~/Dev/Private/Notes.md
 
-echo "$stash_list" > ~/Dev/Private/Stash_list.md
+echo "$stash_list" >~/Dev/Private/Stash_list.md
